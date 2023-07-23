@@ -41,8 +41,8 @@ class Contenedor {
   // };
 
   /*
-  consultarobjeto = async (products) => {
-    await fs.promises.readFile(archivo, JSON.stringify(products, null, "\t"));
+  consultarObjeto = async (objects) => {
+    await fs.promises.readFile(this.file, JSON.stringify(objects, null, "\t"));
   };
 
   deleteObject = async (id) => {

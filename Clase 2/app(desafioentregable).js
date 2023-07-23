@@ -9,23 +9,27 @@ class ProductManager {
   };
 
   // Agrego producto con la funcion addProduct
-  addProduct = (title, description, price, thumbnail, code, stock) => {
-    const product = {
+  addProduct(product) {
+    //= (title, description, price, thumbnail, code, stock) => {
+    /*const product = {
       title,
       description,
       price,
       thumbnail,
       code,
       stock,
-    };
-    if (this.products.length === 0) {
-      product.id = 1;
-    } else {
-      product.id = this.products[this.products.length - 1].id + 1;
+    };*/
+    if (!this.validarcode(product)) {
+      console.log("Advertencia: EL producto no es Valido");
+      return;
     }
-    product.id = this.nextId++;
+    if (this.codeRepeat(product.code)) {
+      console.log("Error: El codigo del producto ya esta siendo utilizado");
+      return;
+    }
+    product.id = this.products.length; // Aca hice la correccion no se si es a lo que tereferias pero funciono.
     this.products.push(product);
-  };
+  }
 
   // Obtengo dos cosas el ID que busco y tambien me da el resultado de ID no encontado.
   getProductById = (id) => {
@@ -41,62 +45,60 @@ class ProductManager {
   };
 
   // Valido el codigo de los producto en caso de existir me devuevlo un error, caso contrario puedo agregar nuevo producto.
-  validarcode = (idCode) => {
-    const codeId = this.products.findIndex((e) => e.code === idCode);
-
-    if (codeId === -1) {
-      console.log("El codigo no se repite, Agregar nuevo Producto");
-      return;
-    } else {
-      console.log("Error: El codigo del producto ya existe");
-      return;
-    }
-  };
+  validarcode(product) {
+    return (
+      product.title &&
+      product.description &&
+      product.price &&
+      product.thumbnail &&
+      product.code &&
+      product.stock !== undefined
+    );
+  }
+  codeRepeat(code) {
+    return this.products.some((p) => p.code === code); // la funcion nos garantiza que el no haya al menos un valor del array repetido.
+  }
 }
 
 const productosAgregado = new ProductManager();
 
-productosAgregado.addProduct(
-  "T48",
-  "Temp. Elemt. LPT Inlet Gas",
-  200,
-  NaN,
-  15002,
-  10
-);
-productosAgregado.addProduct(
-  "T3",
-  "Temp. Elemt. HP Compressor Discharge",
-  500,
-  NaN,
-  25639,
-  20
-);
-productosAgregado.addProduct(
-  "XN25",
-  "Speed Elemt. HPC Magnetic Pickup",
-  500,
-  NaN,
-  19458,
-  2
-);
-productosAgregado.addProduct(
-  "P48",
-  "Pressure Trans. LP Turbine Inlet",
-  200,
-  NaN,
-  15002,
-  10
-);
+productosAgregado.addProduct({
+  title: "T48",
+  description: "Temp. Elemt. LPT Inlet Gas",
+  price: 1500,
+  thumbnail: 18,
+  code: 15008,
+  stock: 102,
+});
+productosAgregado.addProduct({
+  title: "T3",
+  description: "Temp. Elemt. HP Compressor Discharge",
+  price: 500,
+  thumbnail: 16,
+  code: 15009,
+  stock: 20,
+});
+productosAgregado.addProduct({
+  title: "XN25",
+  description: "Speed Elemt. HPC Magnetic Pickup",
+  price: 300,
+  thumbnail: 15,
+  code: 19458,
+  stock: 2,
+});
+productosAgregado.addProduct({
+  title: "P48",
+  description: "Pressure Trans. LP Turbine Inlet",
+  price: 100,
+  thumbnail: 12,
+  code: 15002,
+  stock: 10,
+});
 
 //Consulto la lista de los productos
 const ListaProducto = productosAgregado.getProducts();
 console.log(ListaProducto);
 
-//Verifico a travez de code si existe los productos.
-productosAgregado.validarcode(15001);
-productosAgregado.validarcode(22500);
-
 //Obtengo el producto por su ID y tambien si no existe
-const productoId = productosAgregado.getProductById(4);
-console.log(productoId);
+//const productoId = productosAgregado.getProductById(4);
+//console.log(productoId);
