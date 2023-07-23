@@ -56,7 +56,7 @@ class ProductManager {
     );
   }
   codeRepeat(code) {
-    return this.products.some((p) => p.code === code); // la funcion nos garantiza que el no haya al menos un valor del array repetido.
+    return this.products.some((p) => p.code === code); // la funcion some nos garantiza que el no haya al menos un valor del array repetido.
   }
 }
 
