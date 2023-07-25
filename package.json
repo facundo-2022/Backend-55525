@@ -2,9 +2,10 @@
   "name": "backend-55525",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "main.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon clase 6/main.js"
   },
   "repository": {
     "type": "git",
