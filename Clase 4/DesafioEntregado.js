@@ -17,7 +17,7 @@ class Contenedor {
       const newObj = {
         id: newId,
         ...obj,
-      }; /*utilizamos el expres operator para traer lo que tenemos en obj.*/
+      }; /*utilizamos el spread operator para traer lo que tenemos en obj.*/
       objects.push(newObj);
       await this.saveObjects(objects);
       return newId;
