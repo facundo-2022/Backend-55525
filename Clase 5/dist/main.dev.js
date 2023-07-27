@@ -1,5 +1,9 @@
 "use strict";
 
+var _moment = _interopRequireDefault(require("moment"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
 /*function generarNumerosRandom() {
   const min = 1;
   const max = 20;
@@ -44,54 +48,44 @@ numbers.forEach((number) => (results[number] = (results[number] || 0) + 1));
 console.log(results);
 */
 // ARRAY DE OBJETOS
-var productos = [{
-  id: 1,
-  nombre: "Escuadra",
-  precio: 323.45
-}, {
-  id: 2,
-  nombre: "Calculadora",
-  precio: 234.56
-}, {
-  id: 3,
-  nombre: "Globo Terráqueo",
-  precio: 45.67
-}, {
-  id: 4,
-  nombre: "Paleta Pintura",
-  precio: 456.78
-}, {
-  id: 5,
-  nombre: "Reloj",
-  precio: 67.89
-}, {
-  id: 6,
-  nombre: "Agenda",
-  precio: 78.9
-}]; //Nombres de productos
 
-var names = productos.map(function (producto) {
-  return producto.nombre;
-}).join(",");
-console.log(names); //Precio total
+/*
+const productos = [
+  { id: 1, nombre: "Escuadra", precio: 323.45 },
+  { id: 2, nombre: "Calculadora", precio: 234.56 },
+  { id: 3, nombre: "Globo Terráqueo", precio: 45.67 },
+  { id: 4, nombre: "Paleta Pintura", precio: 456.78 },
+  { id: 5, nombre: "Reloj", precio: 67.89 },
+  { id: 6, nombre: "Agenda", precio: 78.9 },
+];
 
-var totalPrice = productos.reduce(function (total, producto) {
-  return total + producto.precio;
-}, 0).toFixed(2);
-console.log(totalPrice); //Precio Promedio
+//Nombres de productos
+const names = productos.map((producto) => producto.nombre).join(",");
 
-console.log(productos.reduce(function (acc, producto) {
-  return acc + producto.precio;
-}, 0) / productos.length); //Producto con menor precio
+console.log(names);
 
-var minPrice = productos.reduce(function (min, producto) {
+//Precio total
+const totalPrice = productos
+  .reduce((total, producto) => total + producto.precio, 0)
+  .toFixed(2);
+console.log(totalPrice);
+
+//Precio Promedio
+console.log(
+  productos.reduce((acc, producto) => acc + producto.precio, 0) /
+    productos.length
+);
+
+//Producto con menor precio
+const minPrice = productos.reduce((min, producto) => {
   if (producto.precio < min) {
     min = producto.precio;
   }
-
   return min;
 }, productos[0].precio);
-console.log(minPrice); //Producto con mayor precio
+
+console.log(minPrice);*/
+//Producto con mayor precio
 
 /*
 const mayorPrecio = productos.reduce((maxPrecio, producto) => {
@@ -100,7 +94,23 @@ const mayorPrecio = productos.reduce((maxPrecio, producto) => {
   
   console.log("Mayor precio:", mayorPrecio.toFixed(2));*/
 
-var higerPrice = productos.reduce(function (max, p) {
-  return p.precio > max.precio ? p : max;
-});
+/*
+const higerPrice = productos.reduce((max, p) =>
+  p.precio > max.precio ? p : max
+);
 console.log(higerPrice);
+*/
+// Ejercicio calculadora de edad.
+var fechaActual = (0, _moment["default"])();
+var fechaNacimiento = (0, _moment["default"])("1991-08-01", "yyyy-MM-dd");
+
+if (fechaNacimiento.isValid()) {
+  console.log(" #a\xF1os = ".concat(fechaActual.diff(fechaNacimiento, "year"), " a\xF1os"));
+  console.log(" #dias = ".concat(fechaActual.diff(fechaNacimiento, "days"), " dias"));
+} else {
+  console.log("no fue una fecha valida");
+} // DAtos para JSON actualizaciones y conceptos a tener encuenta.
+// con la ~ solamente se actualizan los pacth del proyecto no le va a dar importancia a los demas versiones menores.
+//^ si le agregamos eso se actualiza lasr version 0.13.0 a la 0.14.0 pero si pasa a la 1.0.1 no porque se puede romper el proyecto
+
+/* pero si tiene el asterisco si se va a actualazar.*/

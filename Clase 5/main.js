@@ -42,7 +42,7 @@ console.log(results);
 */
 
 // ARRAY DE OBJETOS
-
+/*
 const productos = [
   { id: 1, nombre: "Escuadra", precio: 323.45 },
   { id: 2, nombre: "Calculadora", precio: 234.56 },
@@ -77,7 +77,7 @@ const minPrice = productos.reduce((min, producto) => {
   return min;
 }, productos[0].precio);
 
-console.log(minPrice);
+console.log(minPrice);*/
 
 //Producto con mayor precio
 /*
@@ -86,8 +86,28 @@ const mayorPrecio = productos.reduce((maxPrecio, producto) => {
   }, productos[0].precio);
   
   console.log("Mayor precio:", mayorPrecio.toFixed(2));*/
-
+/*
 const higerPrice = productos.reduce((max, p) =>
   p.precio > max.precio ? p : max
 );
 console.log(higerPrice);
+*/
+// Ejercicio calculadora de edad.
+
+import moment from "moment";
+
+const fechaActual = moment();
+
+const fechaNacimiento = moment("1991-08-01", "yyyy-MM-dd");
+
+if (fechaNacimiento.isValid()) {
+  console.log(` #años = ${fechaActual.diff(fechaNacimiento, "year")} años`);
+  console.log(` #dias = ${fechaActual.diff(fechaNacimiento, "days")} dias`);
+} else {
+  console.log("no fue una fecha valida");
+}
+
+// DAtos para JSON actualizaciones y conceptos a tener encuenta.
+// con la ~ solamente se actualizan los pacth del proyecto no le va a dar importancia a los demas versiones menores.
+//^ si le agregamos eso se actualiza lasr version 0.13.0 a la 0.14.0 pero si pasa a la 1.0.1 no porque se puede romper el proyecto
+/* pero si tiene el asterisco si se va a actualazar.*/
