@@ -1,0 +1,47 @@
+[
+	{
+		"id": 1,
+		"title": "Tuercas"
+		"description": "Pieza Especial"
+		"price": 150
+		"thumbnail": "NAN"
+		"code": 15001
+		"stock": 20
+	},
+	{
+		"id": 2
+		"title": "Alaves"
+		"description": "Aspas de turbina"
+		"price": 5000,
+		"thumbnail": "NAN"
+		"code": 18032
+		"stock": 45
+	},
+	{
+		"id": 3,
+		"title": "FCV2155"
+		"description": "Valvula de control de flujo"
+		"price": 50000
+		"thumbnail": "NAN"
+		"code": 75021
+		"stock": "2"
+	},
+	
+		"title": "T3"
+		"description": "Elemento de Temperatura"
+		"price": 8000,
+		"thumbnail": "NAN"
+		"code": 35002
+		"stock": 4
+		"id": 4
+	},
+	{
+		"title": "xn25"
+		"description": "Elemento de Temperatura"
+		"price": 2300
+		"thumbnail": "NAN"
+		"code": 30125
+		"stock": 3
+		"id": 5
+	}
+]

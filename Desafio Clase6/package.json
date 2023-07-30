@@ -2,10 +2,10 @@
   "name": "desafio-clase6",
   "version": "1.0.0",
   "description": "",
-  "main": "node.js",
+  "main": "desafio3.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon node.js"
+    "start": "nodemon desafio3.js"
   },
   "keywords": [],
   "author": "",
