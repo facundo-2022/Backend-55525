@@ -1,0 +1,25 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- todo lo que esta en el body va a ser referencia en el handlebars y puede ser modificado, pero se modifica dentro del main.handlebars -->
+
+    <h1>Hola {{user.name}}</h1>
+    {{#if isAdmin}}
+      {{#each food}}
+
+        <div>
+          <p>{{this.name}}</p>
+          <p>{{this.price}}</p>
+
+        </div>
+
+      {{/each}}<!-- de esta manera cerramos el each que abrimos arriba en la busqueda-->
+    {{else}}
+      <p>No eres Admin</p>
+    {{/if}}<!-- aca cerramos el condicional del if que abrimos arriba-->
+  </body>
+</html>
