@@ -16,3 +16,5 @@ router.get("/", (req, res) => {
     food,
   });
 });
+
+module.exports = router; //tengo que exportar el router desde aca

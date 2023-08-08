@@ -6,7 +6,8 @@ var path = require("path");
 
 var handlebars = require("express-handlebars");
 
-var viewsRouter = require("./routes/views.router");
+var viewsRouter = require("./routes/views.router"); //importo lo que contenga el archivo
+
 
 var app = express();
 var PORT = 8080;
@@ -46,7 +47,7 @@ app.get("/", (req, res) => {
   res.render("index", userRandom);
 });*/
 
-app.use("/", viewsRouter); //Desde aca me traigo todo lo que tenga el archivo views.router.js
+app.use("/", viewsRouter); //Desde aca me traigo todo lo que tenga el archivo views.router.js, y consumimos el meldware
 
 app.listen(PORT, function () {
   console.log("server listening on port ".concat(PORT));
