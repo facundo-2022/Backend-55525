@@ -1,0 +1,27 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <h1>Aplicacion de Socket IO</h1>
+    <input type="text" id="mensaje" placeholder="Escibir mensaje" />
+    <button id="btn-send " onclick="enviarMensaje()">Enviar</button>
+
+    <script src="/socket.io/socket.io.js"></script>
+
+    <!--conexion con socket//-->
+    <script>
+      const socket = io(); function enviarMensaje(){ const mensaje =
+      document.getElementById('mensaje').value; socket.emit('enviar-mensaje',
+      mensaje) } /*enviar mensaje al servidor*/ const boton =
+      document.getElementById("btn-send"); boton.addEventListener("click",()=>{
+      console.log("click en el boton")});/*Escuchar eventos "mensaje"desde el
+      servidor y mostrar por consola*/ socket.on("mensaje", (data)=>{
+      console.log(`Mensaje recibido desde el servidor: ${data}`) });
+    </script>
+  </body>
+</html>
