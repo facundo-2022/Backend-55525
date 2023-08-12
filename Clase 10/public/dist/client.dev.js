@@ -6,29 +6,30 @@ var _require = require("express"),
 var socket = io(); // instanciamos a socket.io
 
 var boton = document.getElementById("boton");
-boton.addEventListener("click", sendMessage); //funcion para enviar un mensaje al servidor
+boton.addEventListener("click", sendMessage); //Funcion para enviar un mensaje al servidor
 
 function sendMessage() {
   var message = document.getElementById("messageInput").value;
-  socket.emit("sendMessage", message);
-} //funcion para mostrar lños mensaje en pantalla en el cliente
+  socket.emit("newMessage", message);
+} //Funcion para mostrar los mensajes
 
 
 function appendMessage(socketId, message) {
-  var messageList = document.getElementsById("messageList");
+  var messageList = document.getElementById("messageList");
   var newMessage = document.createElement("p");
   newMessage.textContent = "".concat(socketId, ": ").concat(message);
-  messageList.appendchild(newMessage);
-}
+  messageList.appendChild(newMessage); // Agregar el nuevo mensaje al messageList
+} //Recibir los mensajes del servidor
 
-socket.on("messageList", function (message) {
+
+socket.on("messageList", function (messages) {
   var messageList = document.getElementById("messageList");
   messageList.innerHTML = "";
-  messageList.forEach(function (message) {
-    appendMessage(msg.socketId, msg.mensaje);
+  messages.forEach(function (message) {
+    appendMessages(message.socketId, message.mensaje);
   });
 }); //Recibir los mensajes del servidor
 
 socket.on("newMessage", function (data) {
-  appendMessage(data.socketId, data.mensaje);
+  appendMessage(data.socketId, data.message);
 });

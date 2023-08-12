@@ -36,9 +36,9 @@ class Contenedor {
     await this.subirObjetos(newObjetos);
   };
 
-  //subirObjectos = async (id) => {
-  // await fs.promises.writeFile(this.file, JSON.stringify(objects, null, "\t"));
-  // };
+  subirObjectos = async (id) => {
+    await fs.promises.writeFile(this.file, JSON.stringify(objects, null, "\t"));
+  };
 
   /*
   consultarObjeto = async (objects) => {

@@ -252,7 +252,7 @@ function () {
 }();
 
 var main = function main() {
-  var productos, obj;
+  var productos, obj, id;
   return regeneratorRuntime.async(function main$(_context8) {
     while (1) {
       switch (_context8.prev = _context8.next) {
@@ -265,16 +265,23 @@ var main = function main() {
         case 3:
           obj = _context8.sent;
           console.log("Objeto Obtenido", obj); //guardar objetos
-          //const id = await productos.save({ title: "Producto 3", price: 100 });
-          //console.log("Objeto guardado con ID:", id);
-          //obtener todos los objetos
+
+          _context8.next = 7;
+          return regeneratorRuntime.awrap(productos.save({
+            title: "Producto 3",
+            price: 100
+          }));
+
+        case 7:
+          id = _context8.sent;
+          console.log("Objeto guardado con ID:", id); //obtener todos los objetos
           //const allObjects = await productos.getAll();
           //console.log("Objetos guardados", allObjects);
           ///eliminar un Objeto
           //await productos.deleteById(1);
           //console.log("Objeto eliminado");
 
-        case 5:
+        case 9:
         case "end":
           return _context8.stop();
       }

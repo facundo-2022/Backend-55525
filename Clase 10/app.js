@@ -47,7 +47,7 @@ app.use(express.static(path.join(__dirname, "/public")));
 
 io.on("connection", (socket) => {
   socket.emit("messageList", messages);
-  console.log("Un cliente conectado");
+  console.log("Nuevo cliente conectado");
 
   socket.on("newMessage", (message) => {
     messages.push(message);
