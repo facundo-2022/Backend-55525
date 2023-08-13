@@ -1,0 +1,13 @@
+[
+  {
+    "id": 1,
+    "productId": "4",
+    "productTitle": "t3",
+    "productDescription": "temperatura",
+    "productCode": "6879",
+    "productPrice": "15000",
+    "productStatus": "activo",
+    "productStock": "7",
+    "productCategory": "turbina"
+  }
+]
