@@ -1,6 +1,8 @@
 "use strict";
 
-var _this = void 0;
+var _fs = _interopRequireDefault(require("fs"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -13,12 +15,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-var fs = require("fs");
-
-var express = require("express");
-
-var router = express.Router();
 
 var Contenedor =
 /*#__PURE__*/
@@ -205,7 +201,7 @@ function () {
             case 0:
               _context6.prev = 0;
               _context6.next = 3;
-              return regeneratorRuntime.awrap(fs.promises.readFile(this.file, "utf8"));
+              return regeneratorRuntime.awrap(_fs["default"].promises.readFile(this.file, "utf8"));
 
             case 3:
               data = _context6.sent;
@@ -232,7 +228,7 @@ function () {
             case 0:
               _context7.prev = 0;
               _context7.next = 3;
-              return regeneratorRuntime.awrap(fs.promises.writeFile(this.file, JSON.stringify(objects, null, 2)));
+              return regeneratorRuntime.awrap(_fs["default"].promises.writeFile(this.file, JSON.stringify(objects, null, 2)));
 
             case 3:
               _context7.next = 8;
@@ -253,100 +249,46 @@ function () {
   }]);
 
   return Contenedor;
-}(); // obtener todos los productos
-
-
-router.get("/api/products", function (req, res) {
-  res.json(_this.file);
-}); //  obtener un producto específico
-
-router.get("/api/products/:pid", function (req, res) {
-  var pid = parseInt(req.params.pid);
-  console.log(pid);
-  var product = products.find(function (product) {
-    return product.id === pid;
-  });
-
-  if (!product) {
-    return res.status(404).json({
-      error: "Producto no encontrado."
-    });
-  }
-
-  return res.json(product);
-});
+}();
 
 var main = function main() {
-  var productos, newProduct, id;
+  var productos, obj, id;
   return regeneratorRuntime.async(function main$(_context8) {
     while (1) {
       switch (_context8.prev = _context8.next) {
         case 0:
-          productos = new Contenedor("products.txt");
-          newProduct = req.body;
-          _context8.next = 4;
-          return regeneratorRuntime.awrap(productos.save(newProduct));
+          productos = new Contenedor("productos.txt"); //obtener objetos por ID
 
-        case 4:
+          _context8.next = 3;
+          return regeneratorRuntime.awrap(productos.getById(4));
+
+        case 3:
+          obj = _context8.sent;
+          console.log("Objeto Obtenido", obj); //guardar objetos
+
+          _context8.next = 7;
+          return regeneratorRuntime.awrap(productos.save({
+            title: "Producto 3",
+            price: 100
+          }));
+
+        case 7:
           id = _context8.sent;
+          console.log("Objeto guardado con ID:", id); //obtener todos los objetos
+          //const allObjects = await productos.getAll();
+          //console.log("Objetos guardados", allObjects);
+          ///eliminar un Objeto
+          //await productos.deleteById(1);
+          //console.log("Objeto eliminado");
 
-        case 5:
+        case 9:
         case "end":
           return _context8.stop();
       }
     }
   });
-}; // agregar un nuevo producto
+};
 
-
-router.post("/api/products", function (req, res) {
-  res.json({
-    message: "Producto agregado correctamente."
-  });
+main()["catch"](function (error) {
+  return console.error(error);
 });
-
-function generateUniqueId() {
-  return Date.now().toString();
-} //  actualizar un producto por su ID
-
-
-router.put("/api/products/:pid", function (req, res) {
-  var pid = parseInt(req.params.pid);
-  var updateFields = req.body; // Validamos los campos
-
-  if (Object.keys(updateFields).length === 0) {
-    return res.status(400).json({
-      error: "Debe proporcionar al menos un campo para actualizar."
-    });
-  }
-
-  var productIndex = products.findIndex(function (product) {
-    return product.id === pid;
-  });
-
-  if (productIndex === -1) {
-    return res.status(404).json({
-      error: "Producto no encontrado."
-    });
-  }
-
-  products[productIndex] = _objectSpread({}, products[productIndex], {}, updateFields);
-  return res.json(products[productIndex]);
-}); //  eliminar un producto por su ID
-
-router["delete"]("/api/products/:pid", function (req, res) {
-  var pid = parseInt(req.params.pid);
-  var productIndex = products.find(function (product) {
-    return product.id === pid;
-  });
-
-  if (productIndex === -1) {
-    return res.status(404).json({
-      error: "Producto no encontrado."
-    });
-  }
-
-  var deletedProduct = products.splice(productIndex, 1);
-  return res.json(deletedProduct[0]);
-});
-module.exports = router;

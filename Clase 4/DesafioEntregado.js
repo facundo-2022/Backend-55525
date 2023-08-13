@@ -89,7 +89,10 @@ const main = async () => {
   console.log("Objeto Obtenido", obj);
 
   //guardar objetos
-  const id = await productos.save({ title: "Producto 3", price: 100 });
+  const id = await productos.save(
+    { title: "Producto 3", price: 100 },
+    { title: "Producto 4", price: 400 }
+  );
   console.log("Objeto guardado con ID:", id);
 
   //obtener todos los objetos

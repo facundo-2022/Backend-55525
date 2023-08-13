@@ -270,6 +270,9 @@ var main = function main() {
           return regeneratorRuntime.awrap(productos.save({
             title: "Producto 3",
             price: 100
+          }, {
+            title: "Producto 4",
+            price: 400
           }));
 
         case 7:
