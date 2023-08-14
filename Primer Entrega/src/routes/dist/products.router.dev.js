@@ -1,7 +1,5 @@
 "use strict";
 
-var _this = void 0;
-
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -253,100 +251,120 @@ function () {
   }]);
 
   return Contenedor;
-}(); // obtener todos los productos
+}(); // agregar un nuevo producto
 
 
-router.get("/api/products", function (req, res) {
-  res.json(_this.file);
-}); //  obtener un producto específico
-
-router.get("/api/products/:pid", function (req, res) {
-  var pid = parseInt(req.params.pid);
-  console.log(pid);
-  var product = products.find(function (product) {
-    return product.id === pid;
-  });
-
-  if (!product) {
-    return res.status(404).json({
-      error: "Producto no encontrado."
-    });
-  }
-
-  return res.json(product);
-});
-
-var main = function main() {
-  var productos, newProduct, id;
-  return regeneratorRuntime.async(function main$(_context8) {
+router.post("/api/products", function _callee(req, res) {
+  var newProduct, productos, id;
+  return regeneratorRuntime.async(function _callee$(_context8) {
     while (1) {
       switch (_context8.prev = _context8.next) {
         case 0:
-          productos = new Contenedor("products.txt");
           newProduct = req.body;
+          productos = new Contenedor("productos.txt");
           _context8.next = 4;
           return regeneratorRuntime.awrap(productos.save(newProduct));
 
         case 4:
           id = _context8.sent;
+          res.json({
+            message: "Producto agregado correctamente."
+          });
 
-        case 5:
+        case 6:
         case "end":
           return _context8.stop();
       }
     }
   });
-}; // agregar un nuevo producto
+}); // obtener todos los productos
 
+router.get("/api/products", function _callee2(req, res) {
+  var productos, allObjects;
+  return regeneratorRuntime.async(function _callee2$(_context9) {
+    while (1) {
+      switch (_context9.prev = _context9.next) {
+        case 0:
+          productos = new Contenedor("productos.txt");
+          _context9.next = 3;
+          return regeneratorRuntime.awrap(productos.getAll());
 
-router.post("/api/products", function (req, res) {
-  res.json({
-    message: "Producto agregado correctamente."
+        case 3:
+          allObjects = _context9.sent;
+          console.log(allObjects); //return res.send("this.file");
+
+        case 5:
+        case "end":
+          return _context9.stop();
+      }
+    }
   });
-});
+}); //  obtener un producto específico
+
+router.get("/api/products/:pid", function _callee3(req, res) {
+  var productos, obj;
+  return regeneratorRuntime.async(function _callee3$(_context10) {
+    while (1) {
+      switch (_context10.prev = _context10.next) {
+        case 0:
+          productos = new Contenedor("productos.txt");
+          _context10.next = 3;
+          return regeneratorRuntime.awrap(productos.getById());
+
+        case 3:
+          obj = _context10.sent;
+          console.log(obj);
+
+        case 5:
+        case "end":
+          return _context10.stop();
+      }
+    }
+  });
+} // return res.json(productos);
+);
 
 function generateUniqueId() {
   return Date.now().toString();
 } //  actualizar un producto por su ID
 
 
-router.put("/api/products/:pid", function (req, res) {
-  var pid = parseInt(req.params.pid);
-  var updateFields = req.body; // Validamos los campos
+router.put("/api/products/:pid", function _callee4(req, res) {
+  var obj;
+  return regeneratorRuntime.async(function _callee4$(_context11) {
+    while (1) {
+      switch (_context11.prev = _context11.next) {
+        case 0:
+          _context11.next = 2;
+          return regeneratorRuntime.awrap(productos.getById(4));
 
-  if (Object.keys(updateFields).length === 0) {
-    return res.status(400).json({
-      error: "Debe proporcionar al menos un campo para actualizar."
-    });
-  }
+        case 2:
+          obj = _context11.sent;
 
-  var productIndex = products.findIndex(function (product) {
-    return product.id === pid;
+        case 3:
+        case "end":
+          return _context11.stop();
+      }
+    }
   });
-
-  if (productIndex === -1) {
-    return res.status(404).json({
-      error: "Producto no encontrado."
-    });
-  }
-
-  products[productIndex] = _objectSpread({}, products[productIndex], {}, updateFields);
-  return res.json(products[productIndex]);
 }); //  eliminar un producto por su ID
 
-router["delete"]("/api/products/:pid", function (req, res) {
-  var pid = parseInt(req.params.pid);
-  var productIndex = products.find(function (product) {
-    return product.id === pid;
+router["delete"]("/api/products/:pid", function _callee5(req, res) {
+  var productos, pid;
+  return regeneratorRuntime.async(function _callee5$(_context12) {
+    while (1) {
+      switch (_context12.prev = _context12.next) {
+        case 0:
+          productos = new Contenedor("productos.txt");
+          pid = parseInt(req.params.pid);
+          _context12.next = 4;
+          return regeneratorRuntime.awrap(productos.deleteById());
+
+        case 4:
+        case "end":
+          return _context12.stop();
+      }
+    }
   });
-
-  if (productIndex === -1) {
-    return res.status(404).json({
-      error: "Producto no encontrado."
-    });
-  }
-
-  var deletedProduct = products.splice(productIndex, 1);
-  return res.json(deletedProduct[0]);
 });
 module.exports = router;

@@ -1,7 +1,6 @@
 [
   {
     "id": 1,
-    "productId": "4",
     "productTitle": "t3",
     "productDescription": "temperatura",
     "productCode": "6879",
@@ -9,5 +8,65 @@
     "productStatus": "activo",
     "productStock": "7",
     "productCategory": "turbina"
+  },
+  {
+    "id": 2,
+    "productTitle": "p48",
+    "productDescription": "presion",
+    "productCode": "1232",
+    "productPrice": "12312",
+    "productStatus": "activo",
+    "productStock": "3",
+    "productCategory": "turbina"
+  },
+  {
+    "id": 3,
+    "productTitle": "t3",
+    "productDescription": "temperatura",
+    "productCode": "1231",
+    "productPrice": "1423",
+    "productStatus": "activo",
+    "productStock": "23",
+    "productCategory": "turbina"
+  },
+  {
+    "id": 4,
+    "productTitle": "xnsd",
+    "productDescription": "velocidad",
+    "productCode": "123332",
+    "productPrice": "123199",
+    "productStatus": "activo",
+    "productStock": "2",
+    "productCategory": "turbina"
+  },
+  {
+    "id": 5,
+    "productTitle": "xnsd",
+    "productDescription": "velocidad",
+    "productCode": "123332",
+    "productPrice": "123199",
+    "productStatus": "activo",
+    "productStock": "2",
+    "productCategory": "turbina"
+  },
+  {
+    "id": 6,
+    "productTitle": "xn25",
+    "productDescription": "sensor velocidad",
+    "productCode": "12456",
+    "productPrice": "23455",
+    "productStatus": "Activo",
+    "productStock": "4",
+    "productCategory": "auxiliary system"
+  },
+  {
+    "id": 7,
+    "productTitle": "xn25",
+    "productDescription": "sensor velocidad",
+    "productCode": "12456",
+    "productPrice": "23455",
+    "productStatus": "Activo",
+    "productStock": "4",
+    "productCategory": "auxiliary system"
   }
 ]
