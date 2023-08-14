@@ -291,7 +291,7 @@ router.get("/api/products", function _callee2(req, res) {
 
         case 3:
           allObjects = _context9.sent;
-          console.log(allObjects); //return res.send("this.file");
+          console.log(allObjects); //return res.json("this.file");
 
         case 5:
         case "end":
@@ -321,7 +321,7 @@ router.get("/api/products/:pid", function _callee3(req, res) {
       }
     }
   });
-} // return res.json(productos);
+} // return res.json(id);
 );
 
 function generateUniqueId() {
@@ -350,7 +350,7 @@ router.put("/api/products/:pid", function _callee4(req, res) {
 }); //  eliminar un producto por su ID
 
 router["delete"]("/api/products/:pid", function _callee5(req, res) {
-  var productos, pid;
+  var productos, pid, objects;
   return regeneratorRuntime.async(function _callee5$(_context12) {
     while (1) {
       switch (_context12.prev = _context12.next) {
@@ -358,9 +358,13 @@ router["delete"]("/api/products/:pid", function _callee5(req, res) {
           productos = new Contenedor("productos.txt");
           pid = parseInt(req.params.pid);
           _context12.next = 4;
-          return regeneratorRuntime.awrap(productos.deleteById());
+          return regeneratorRuntime.awrap(productos.deleteById(2));
 
         case 4:
+          objects = _context12.sent;
+          console.log(objects); //return res.json(deletedProduct[0]);
+
+        case 6:
         case "end":
           return _context12.stop();
       }

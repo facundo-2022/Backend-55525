@@ -68,5 +68,15 @@
     "productStatus": "Activo",
     "productStock": "4",
     "productCategory": "auxiliary system"
+  },
+  {
+    "id": 8,
+    "productTitle": "cd801",
+    "productDescription": "chip detector",
+    "productCode": "8921",
+    "productPrice": "123109",
+    "productStatus": "activo",
+    "productStock": "1",
+    "productCategory": "turbina"
   }
 ]

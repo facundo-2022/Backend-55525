@@ -98,7 +98,7 @@ router.get("/api/products", async (req, res) => {
   const allObjects = await productos.getAll();
   console.log(allObjects);
 
-  //return res.send("this.file");
+  //return res.json("this.file");
 });
 
 //  obtener un producto específico
@@ -108,10 +108,11 @@ router.get(
     const productos = new Contenedor("productos.txt");
 
     const obj = await productos.getById();
+
     console.log(obj);
   }
 
-  // return res.json(productos);
+  // return res.json(id);
 );
 
 function generateUniqueId() {
@@ -130,8 +131,8 @@ router.delete("/api/products/:pid", async (req, res) => {
 
   const pid = parseInt(req.params.pid);
 
-  await productos.deleteById();
-
+  const objects = await productos.deleteById(2);
+  console.log(objects);
   //return res.json(deletedProduct[0]);
 });
 
