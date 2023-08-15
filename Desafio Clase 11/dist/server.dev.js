@@ -11,9 +11,8 @@ var path = require("path");
 var _require = require("socket.io"),
     Server = _require.Server;
 
-var handlebars = require("express-handlebars");
+var handlebars = require("express-handlebars"); //const Swal = require("sweetalert2");
 
-var Swal = require("sweetalert2");
 
 var _require2 = require("tls"),
     CLIENT_RENEG_LIMIT = _require2.CLIENT_RENEG_LIMIT;

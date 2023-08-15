@@ -4,7 +4,7 @@ const socketIo = require("socket.io");
 const path = require("path");
 const { Server } = require("socket.io");
 const handlebars = require("express-handlebars");
-const Swal = require("sweetalert2");
+//const Swal = require("sweetalert2");
 const { CLIENT_RENEG_LIMIT } = require("tls");
 
 const app = express();
