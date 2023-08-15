@@ -6,81 +6,34 @@
     <title>Document</title>
   </head>
   <body>
-    <h1>Products Manager</h1>
+    <h1>Ingresar Carrito</h1>
 
-    <h1>Products Manager</h1>
-    <br />
-    <h2>Agregar Productos</h2>
-
-    <section>
-      <form action="/api/products" method="post">
-        <label for="productTitle">Product Name</label>
-        <input type="text" name="productTitle" id="productTitle" />
-        <label for="productDescription">Product Description</label>
-        <input type="text" name="productDescription" id="productDescription" />
-        <label for="productCode">Product Code</label>
-        <input type="text" name="productCode" id="productCode" />
-        <label for="productPrice">Product Price</label>
-        <input type="text" name="productPrice" id="productPrice" />
-        <label for="productStatus">Product Status</label>
-        <input type="text" name="productStatus" id="productStatus" />
-        <label for="productStock">Product Stock</label>
-        <input type="text" name="productStock" id="productStock" />
-        <label for="productCategory">Product Category</label>
-        <input type="text" name="productCategory" id="productCategory" />
-        <button type="submit">Add Product</button>
-      </form>
-    </section>
-    <br />
-    <h2>Consultar lista de Productos</h2>
-    <section>
-      <form action="/api/products" method="get">
-        <button type="submit">Consultar Lista de producto</button>
-      </form>
-    </section>
-    <br />
-    <h2>Consultar producto por su ID</h2>
-    <section>
-      <form action="/api/products/:pid" method="get">
-        <label for="Id">consultar producto</label>
-        <input type="text" name="Consultar ID" id="id" />
-
-        <button type="submit">consultar Id</button>
-      </form>
-    </section>
-    <br />
-    <h2>Actualizar datos de los Productos</h2>
-    <section>
-      <form action="/api/products/:pid" method="put">
-        <label for="id">Id</label>
-        <input type="text" name="id" id="id" />
-        <label for="productTitle">Product Name</label>
-        <input type="text" name="productTitle" id="productTitle" />
-        <label for="productDescription">Product Description</label>
-        <input type="text" name="productDescription" id="productDescription" />
-        <label for="productCode">Product Code</label>
-        <input type="text" name="productCode" id="productCode" />
-        <label for="productPrice">Product Price</label>
-        <input type="text" name="productPrice" id="productPrice" />
-        <label for="productStatus">Product Status</label>
-        <input type="text" name="productStatus" id="productStatus" />
-        <label for="productStock">Product Stock</label>
-        <input type="text" name="productStock" id="productStock" />
-        <label for="productCategory">Product Category</label>
-        <input type="text" name="productCategory" id="productCategory" />
-        <button type="submit">Actualizar Datos</button>
-      </form>
-    </section>
-
-    <br />
-    <h2>Eliminar producto por su ID</h2>
-    <section>
-      <form action="/api/products/:pid" method="delete">
-        <label for="Id">Eliminar Producto</label>
-        <input type="text" name="Consultar ID" id="id" />
-
-        <button type="submit">Eliminar</button>
-      </form>
-    </section>
+    <form action="/api/products" method="post">
+      <!-- <label for="productId">ID Producto</label>
+        <input type="text" name="productId" id="productId" required> -->
+      <label for="productTitle">Nombre de Producto</label>
+      <input type="text" name="title" id="title" required />
+      <label for="productDescription">Descripción de Producto</label>
+      <input type="text" name="description" id="description" required />
+      <label for="productCode"> Código de Producto</label>
+      <input type="text" name="code" id="code" required />
+      <label for="productPrice">Precio Producto</label>
+      <input type="number" name="price" id="price" required />
+      <label for="productStatus">Estado del producto</label>
+      <input
+        type="text"
+        name="status"
+        id="status"
+        placeholder="true"
+        required
+      />
+      <label for="productStock">Stock Producto</label>
+      <input type="number" name="stock" id="stock" required />
+      <label for="productCategory">Categoría del Producto </label>
+      <input type="text" name="category" id="category" required />
+      <label for="productCategory">Imagen miniatura</label>
+      <input type="text" name="thumbnail" id="thumbnail" required />
+      <button type="submit">Agregar producto</button>
+    </form>
   </body>
 </html>
