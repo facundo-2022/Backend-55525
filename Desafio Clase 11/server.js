@@ -22,6 +22,27 @@ app.get("/", (req, res) => {
   res.render("index.hbs");
 });
 
+const users = {};
+
+io.on("connection", (socket) => {
+  console.log("Usuario conectado en el servidor");
+  socketIo.on("new-user", (username) => {
+    users[socketIo.id] = username;
+    io.emit("userConnected", username);
+  });
+
+  socket.on("chatMessage", (message) => {
+    const username = users[socket.id];
+    io.emit("message", { username, message });
+  });
+
+  socket.on("disconnect", () => {
+    const username = users[socket.id];
+    delete users[socket.id];
+    io.emit("userDisconnected", username);
+  });
+});
+
 const PORT = process.env.PORT || 8080;
 server.listen(PORT, () => {
   console.log(`server running on ${PORT}`);

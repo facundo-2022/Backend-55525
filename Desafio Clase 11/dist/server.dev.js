@@ -29,6 +29,26 @@ app.use(express["static"](path.join(__dirname, "public")));
 app.get("/", function (req, res) {
   res.render("index.hbs");
 });
+var users = {};
+io.on("connection", function (socket) {
+  console.log("Usuario conectado en el servidor");
+  socketIo.on("new-user", function (username) {
+    users[socketIo.id] = username;
+    io.emit("userConnected", username);
+  });
+  socket.on("chatMessage", function (message) {
+    var username = users[socket.id];
+    io.emit("message", {
+      username: username,
+      message: message
+    });
+  });
+  socket.on("disconnect", function () {
+    var username = users[socket.id];
+    delete users[socket.id];
+    io.emit("userDisconnected", username);
+  });
+});
 var PORT = process.env.PORT || 8080;
 server.listen(PORT, function () {
   console.log("server running on ".concat(PORT));
