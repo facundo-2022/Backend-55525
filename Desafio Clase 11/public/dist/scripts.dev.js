@@ -11,7 +11,7 @@ socket.on("addText", function (text, descripcion) {
   textarea.value += text + descripcion + "\n";
   products.value += text + descripcion;
 });
-productoForm.addEventListener("submit", function (e) {
+productForm.addEventListener("submit", function (e) {
   e.preventDefault();
   var producto = productInput.value.trim();
   var code = codeInput.value.trim();

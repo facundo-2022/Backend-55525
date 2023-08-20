@@ -11,7 +11,7 @@ socket.on("addText", (text, descripcion) => {
   products.value += text + descripcion;
 });
 
-productoForm.addEventListener("submit", (e) => {
+productForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
   const producto = productInput.value.trim();
