@@ -10,3 +10,19 @@ socket.on("addText", (text, descripcion) => {
   textarea.value += text + descripcion + "\n";
   products.value += text + descripcion;
 });
+
+productoForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const producto = productInput.value.trim();
+  const code = codeInput.value.trim();
+  const price = priceInput.value.trim();
+
+  if (producto) {
+    textarea.value = "";
+    socket.emit("addText", producto, code, price);
+    productInput.value = "";
+    codeInput.value = "";
+    priceInput.value = "";
+  }
+});

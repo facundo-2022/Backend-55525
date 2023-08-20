@@ -11,3 +11,17 @@ socket.on("addText", function (text, descripcion) {
   textarea.value += text + descripcion + "\n";
   products.value += text + descripcion;
 });
+productoForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+  var producto = productInput.value.trim();
+  var code = codeInput.value.trim();
+  var price = priceInput.value.trim();
+
+  if (producto) {
+    textarea.value = "";
+    socket.emit("addText", producto, code, price);
+    productInput.value = "";
+    codeInput.value = "";
+    priceInput.value = "";
+  }
+});
