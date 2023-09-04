@@ -15,9 +15,7 @@ app.use(express.json());
 //Enlace de conexion con mongoose atlas
 
 mongoose
-  .connect(
-    "mongodb+srv://facundom:Amparo.23@cluster0.ko8l77a.mongodb.net/?retryWrites=true&w=majority"
-  )
+  .connect("")
   .then(() => {
     console.log("Conectado con mi base de datos");
   })
