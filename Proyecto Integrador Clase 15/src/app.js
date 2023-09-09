@@ -24,12 +24,12 @@ const environment = async () => {
       console.log("Conectado con mi base de datos");
     })
     .catch((error) => console.error("Error en la conexion"));
-  /* 
-  let response = await userModel.find({ first_name: "luka" }).exec();
-  console.log(response); */
+
+  let response = await userModel.find({ Gender: "male" }).exec();
+  console.log(response);
 
   let users = await userModel.paginate(
-    { gender: "female" },
+    { Gender: "female" },
     { limit: 5, page: 1 }
   );
   console.log(users);
