@@ -1,0 +1,9 @@
+[{"first_name": "florencia", "last_name": "gomez", "email": "florencia@gomez.com"},
+{"first_name": "norberto", "last_name": "rosas", "email": "norberto@rosas.com"},
+{"first_name": "alberto", "last_name": "alegre", "email": "alberto@alegre.com"},
+{"first_name": "husian", "last_name": "velazquez", "email": "husian@velazquez.com"},
+{"first_name": "felipe", "last_name": "melo", "email": "felipe@melo.com"},
+{"first_name": "cuti", "last_name": "romero", "email": "cuti@romero.com"},
+{"first_name": "luka", "last_name": "modric", "email": "luka@modric.com"},
+{"first_name": "amparo", "last_name": "barrios", "email": "amparo@barrios.com"}
+]

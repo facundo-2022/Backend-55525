@@ -1,5 +1,6 @@
 const { Router } = require("express");
 const { productModel } = require("../models/products.model");
+const mongoosePaginate = require("mongoose-paginate-v2");
 
 const router = Router();
 
