@@ -10,47 +10,52 @@ var mongoosePaginate = require("mongoose-paginate-v2");
 
 var router = Router(); //cuando usamos mongoose se utilizan funciones asincronas (async), el payload es la informacion que nos va a venir
 
-/* router.get("/products", async (req, res) => {
-  try {
-    const { sort, category, status, page, limit } = req.query;
-
-    res.send({ result: "success", payload: products });
-  } catch (error) {
-    console.log(error);
-  }
-}); */
-
-router.get("/", function _callee(req, res) {
-  var _req$query, limit, page, sort, result;
+router.get("/products", function _callee(req, res) {
+  var _req$query, page, limit, category, product;
 
   return regeneratorRuntime.async(function _callee$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
-          _req$query = req.query, limit = _req$query.limit, page = _req$query.page, sort = _req$query.sort;
-          _context.next = 3;
+          _context.prev = 0;
+          _req$query = req.query, page = _req$query.page, limit = _req$query.limit, category = _req$query.category;
+          _context.next = 4;
           return regeneratorRuntime.awrap(productModel.paginate({}, {
-            limit: limit,
             page: page,
-            sort: sort,
+            limit: limit,
+            category: category,
             lean: true
           }));
 
-        case 3:
-          result = _context.sent;
-          console.log(result);
+        case 4:
+          product = _context.sent;
           res.send({
             result: "success",
-            payload: result
+            payload: product
           });
+          _context.next = 11;
+          break;
 
-        case 6:
+        case 8:
+          _context.prev = 8;
+          _context.t0 = _context["catch"](0);
+          console.log(_context.t0);
+
+        case 11:
         case "end":
           return _context.stop();
       }
     }
-  });
+  }, null, null, [[0, 8]]);
 });
+/* router.get("/products", async (req, res) => {
+  const filter = req.query.filter;
+
+  let products = await productModel.paginate({ category: filter });
+  console.log(products);
+  res.send({ result: "success", payload: products });
+}); */
+
 router.post("/", function _callee2(req, res) {
   var _req$body, name, category, price, stock, image, result;
 

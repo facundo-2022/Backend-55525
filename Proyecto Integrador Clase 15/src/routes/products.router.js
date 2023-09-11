@@ -5,26 +5,26 @@ const mongoosePaginate = require("mongoose-paginate-v2");
 const router = Router();
 
 //cuando usamos mongoose se utilizan funciones asincronas (async), el payload es la informacion que nos va a venir
-/* router.get("/products", async (req, res) => {
+router.get("/products", async (req, res) => {
   try {
-    const { sort, category, status, page, limit } = req.query;
-
-    res.send({ result: "success", payload: products });
+    const { page, limit, category } = req.query;
+    let product = await productModel.paginate(
+      {},
+      { page, limit, category, lean: true }
+    );
+    res.send({ result: "success", payload: product });
   } catch (error) {
     console.log(error);
   }
-}); */
-
-router.get("/", async (req, res) => {
-  const { limit, page, sort } = req.query;
-  let result = await productModel.paginate(
-    {},
-    { limit, page, sort, lean: true }
-  );
-
-  console.log(result);
-  res.send({ result: "success", payload: result });
 });
+
+/* router.get("/products", async (req, res) => {
+  const filter = req.query.filter;
+
+  let products = await productModel.paginate({ category: filter });
+  console.log(products);
+  res.send({ result: "success", payload: products });
+}); */
 
 router.post("/", async (req, res) => {
   let { name, category, price, stock, image } = req.body;
