@@ -7,10 +7,10 @@ const router = Router();
 //cuando usamos mongoose se utilizan funciones asincronas (async), el payload es la informacion que nos va a venir
 router.get("/products", async (req, res) => {
   try {
-    const { page, limit, category } = req.query;
+    const { page, limit, filter } = req.query;
     let product = await productModel.paginate(
       {},
-      { page, limit, category, lean: true }
+      { page, limit, category: filter, lean: true }
     );
     res.send({ result: "success", payload: product });
   } catch (error) {
