@@ -2,6 +2,8 @@
 
 var mongoose = require("mongoose");
 
+var mongoosePaginate = require("mongoose-paginate-v2");
+
 var productCollection = "products";
 var productSchema = mongoose.Schema({
   name: String,
@@ -14,6 +16,7 @@ var productSchema = mongoose.Schema({
     "default": []
   }
 });
+productSchema.plugin(mongoosePaginate);
 var productModel = mongoose.model(productCollection, productSchema);
 module.exports = {
   productModel: productModel

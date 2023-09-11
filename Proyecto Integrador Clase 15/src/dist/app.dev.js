@@ -8,6 +8,8 @@ var userRouter = require("./routes/users.router.js");
 
 var productRouter = require("./routes/products.router");
 
+var cartRouter = require("./routes/carts.router");
+
 var _require = require("..//src/models/user.model"),
     userModel = _require.userModel;
 
@@ -24,7 +26,6 @@ app.listen(port, function () {
 app.use(express.json()); //Enlace de conexion con mongoose atlas
 
 var environment = function environment() {
-  var response, users;
   return regeneratorRuntime.async(function environment$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
@@ -37,27 +38,6 @@ var environment = function environment() {
           }));
 
         case 2:
-          _context.next = 4;
-          return regeneratorRuntime.awrap(userModel.find({
-            Gender: "male"
-          }).exec());
-
-        case 4:
-          response = _context.sent;
-          console.log(response);
-          _context.next = 8;
-          return regeneratorRuntime.awrap(userModel.paginate({
-            Gender: "female"
-          }, {
-            limit: 5,
-            page: 1
-          }));
-
-        case 8:
-          users = _context.sent;
-          console.log(users);
-
-        case 10:
         case "end":
           return _context.stop();
       }
@@ -69,3 +49,4 @@ environment(); //esto es lo que vamos a consumir de routes
 
 app.use("/api/users", userRouter);
 app.use("/api/products", productRouter);
+app.use("/api/carts", cartRouter);

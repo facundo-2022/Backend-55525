@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const userRouter = require("./routes/users.router.js");
 const productRouter = require("./routes/products.router");
+const cartRouter = require("./routes/carts.router");
 const { userModel } = require("..//src/models/user.model");
 const { productModel } = require("..//src/models/products.model");
 const mongoosePaginate = require("mongoose-paginate-v2");
@@ -25,16 +26,20 @@ const environment = async () => {
     })
     .catch((error) => console.error("Error en la conexion"));
 
-  let response = await userModel.find({ Gender: "male" }).exec();
+  /* let response = await userModel.find({ email: "alberto@alegre.com" }).exec();
   console.log(response);
 
   let users = await userModel.paginate(
     { Gender: "female" },
     { limit: 5, page: 1 }
   );
-  console.log(users);
+  console.log(users); */
+
+  /*   let consulta = await productModel.find({ category: "Pescaderia" }).exec();
+  console.log(consulta); */
 };
 environment();
 //esto es lo que vamos a consumir de routes
 app.use("/api/users", userRouter);
 app.use("/api/products", productRouter);
+app.use("/api/carts", cartRouter);

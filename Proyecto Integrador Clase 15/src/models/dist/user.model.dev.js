@@ -13,6 +13,7 @@ var userSchema = mongoose.Schema({
   },
   last_name: String,
   email: String,
+  gender: String,
   products: {
     type: [{
       product: {
