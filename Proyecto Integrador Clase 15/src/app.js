@@ -5,6 +5,7 @@ const productRouter = require("./routes/products.router");
 const cartRouter = require("./routes/carts.router");
 const { userModel } = require("..//src/models/user.model");
 const { productModel } = require("..//src/models/products.model");
+const { cartModel } = require("../src/models/carts.model");
 const mongoosePaginate = require("mongoose-paginate-v2");
 const app = express();
 const port = 8080;

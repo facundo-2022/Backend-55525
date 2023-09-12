@@ -16,6 +16,9 @@ var _require = require("..//src/models/user.model"),
 var _require2 = require("..//src/models/products.model"),
     productModel = _require2.productModel;
 
+var _require3 = require("../src/models/carts.model"),
+    cartModel = _require3.cartModel;
+
 var mongoosePaginate = require("mongoose-paginate-v2");
 
 var app = express();

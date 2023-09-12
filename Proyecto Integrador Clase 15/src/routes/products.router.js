@@ -5,7 +5,7 @@ const mongoosePaginate = require("mongoose-paginate-v2");
 const router = Router();
 
 //cuando usamos mongoose se utilizan funciones asincronas (async), el payload es la informacion que nos va a venir
-router.get("/products", async (req, res) => {
+/* router.get("/products", async (req, res) => {
   try {
     const { page, limit, filter } = req.query;
     let product = await productModel.paginate(
@@ -16,14 +16,49 @@ router.get("/products", async (req, res) => {
   } catch (error) {
     console.log(error);
   }
-});
+}); */
 
 /* router.get("/products", async (req, res) => {
   const filter = req.query.filter;
-
+  //filtro el producto por su categoria 
   let products = await productModel.paginate({ category: filter });
   console.log(products);
   res.send({ result: "success", payload: products });
+}); */
+
+router.get("/products", async (req, res) => {
+  try {
+    const { page, limit, filter, sort } = req.query;
+    const priceSort = sort ? parseInt(sort) : 1;
+    const serch = filter;
+    const options = {
+      page: page || 1, // Página actual
+      limit: limit || 10, // Cantidad de resultados por página
+      sort: { price: priceSort }, // Ordenar por precio
+    };
+    const product = await productModel.paginate(serch, options);
+    res.send({ result: "success", payload: product });
+  } catch (error) {
+    console.log(error);
+  }
+});
+/* 
+router.get("/products", async (req, res) => {
+  try {
+    const limit = parseInt(req.query.limit) || 10;
+    const page = parseInt(req.query.page) || 1;
+    const sortOrder = req.query.sortOrder || "asc";
+    const filter = req.query.filter;
+
+    const product = await productModel.paginate(
+      { category: filter },
+      { limit, page, sort: { price: sortOrder } }
+    );
+    console.log(product);
+    res.send({ result: "success", payload: product });
+  } catch (error) {
+    console.log(error);
+  }
 }); */
 
 router.post("/", async (req, res) => {

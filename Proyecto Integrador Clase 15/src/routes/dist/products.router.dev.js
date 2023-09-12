@@ -10,50 +10,89 @@ var mongoosePaginate = require("mongoose-paginate-v2");
 
 var router = Router(); //cuando usamos mongoose se utilizan funciones asincronas (async), el payload es la informacion que nos va a venir
 
+/* router.get("/products", async (req, res) => {
+  try {
+    const { page, limit, filter } = req.query;
+    let product = await productModel.paginate(
+      {},
+      { page, limit, category: filter, lean: true }
+    );
+    res.send({ result: "success", payload: product });
+  } catch (error) {
+    console.log(error);
+  }
+}); */
+
+/* router.get("/products", async (req, res) => {
+  const filter = req.query.filter;
+  //filtro el producto por su categoria 
+  let products = await productModel.paginate({ category: filter });
+  console.log(products);
+  res.send({ result: "success", payload: products });
+}); */
+
 router.get("/products", function _callee(req, res) {
-  var _req$query, page, limit, filter, product;
+  var _req$query, page, limit, filter, sort, priceSort, serch, options, product;
 
   return regeneratorRuntime.async(function _callee$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
           _context.prev = 0;
-          _req$query = req.query, page = _req$query.page, limit = _req$query.limit, filter = _req$query.filter;
-          _context.next = 4;
-          return regeneratorRuntime.awrap(productModel.paginate({}, {
-            page: page,
-            limit: limit,
-            category: filter,
-            lean: true
-          }));
+          _req$query = req.query, page = _req$query.page, limit = _req$query.limit, filter = _req$query.filter, sort = _req$query.sort;
+          priceSort = sort ? parseInt(sort) : 1;
+          serch = filter;
+          options = {
+            page: page || 1,
+            // Página actual
+            limit: limit || 10,
+            // Cantidad de resultados por página
+            sort: {
+              price: priceSort
+            } // Ordenar por precio
 
-        case 4:
+          };
+          _context.next = 7;
+          return regeneratorRuntime.awrap(productModel.paginate(serch, options));
+
+        case 7:
           product = _context.sent;
           res.send({
             result: "success",
             payload: product
           });
-          _context.next = 11;
+          _context.next = 14;
           break;
 
-        case 8:
-          _context.prev = 8;
+        case 11:
+          _context.prev = 11;
           _context.t0 = _context["catch"](0);
           console.log(_context.t0);
 
-        case 11:
+        case 14:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[0, 8]]);
+  }, null, null, [[0, 11]]);
 });
-/* router.get("/products", async (req, res) => {
-  const filter = req.query.filter;
+/* 
+router.get("/products", async (req, res) => {
+  try {
+    const limit = parseInt(req.query.limit) || 10;
+    const page = parseInt(req.query.page) || 1;
+    const sortOrder = req.query.sortOrder || "asc";
+    const filter = req.query.filter;
 
-  let products = await productModel.paginate({ category: filter });
-  console.log(products);
-  res.send({ result: "success", payload: products });
+    const product = await productModel.paginate(
+      { category: filter },
+      { limit, page, sort: { price: sortOrder } }
+    );
+    console.log(product);
+    res.send({ result: "success", payload: product });
+  } catch (error) {
+    console.log(error);
+  }
 }); */
 
 router.post("/", function _callee2(req, res) {
