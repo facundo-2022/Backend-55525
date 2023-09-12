@@ -1,0 +1,10 @@
+[{"name":"Azucar", "category":"Alimentos", "price":275, "stock": 10, "image":"image"},
+{"name":"Yerba", "category":"Alimentos", "price":300, "stock": 8, "image":"image"},
+{"name":"Choclos", "category":"Alimentos", "price":75, "stock": 15, "image":"image"},
+{"name":"Manteca", "category":"Alimentos", "price":175, "stock": 25, "image":"image"},
+{"name":"Cafe", "category":"Alimentos", "price":250, "stock": 12, "image":"image"},
+{"name":"Aceite", "category":"Alimentos", "price":125, "stock": 18, "image":"image"},
+{"name":"Atun", "category":"Alimentos", "price":150, "stock": 12, "image":"image"},
+{"name":"Harina", "category":"Alimentos", "price":200, "stock": 35, "image":"image"},
+{"name":"fideos", "category":"Alimentos", "price":220, "stock": 40, "image":"image"}
+]
