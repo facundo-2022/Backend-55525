@@ -50,7 +50,8 @@ router.get("/", function _callee(req, res) {
       }
     }
   }, null, null, [[2, 10]]);
-});
+}); //Crear carrito en la base de datos
+
 router.post("/", function _callee2(req, res) {
   var products, newCart;
   return regeneratorRuntime.async(function _callee2$(_context2) {
@@ -87,7 +88,8 @@ router.post("/", function _callee2(req, res) {
       }
     }
   }, null, null, [[1, 8]]);
-});
+}); //modificar los datos de productos del carrito
+
 router.put("/:cid", function _callee3(req, res) {
   var cid, productToReplace, result;
   return regeneratorRuntime.async(function _callee3$(_context3) {
@@ -250,7 +252,7 @@ router.put("/:cartId/products/:pId", function _callee5(req, res) {
           _context5.t0 = _context5["catch"](3);
           res.send({
             result: "Error",
-            message: "Ha ocurrido un error al actualizar la cantidad del producto en el carrito."
+            message: "Error al actualizar la cantidad del producto en el carrito."
           });
 
         case 21:
@@ -302,7 +304,7 @@ router["delete"]("/:cartId", function _callee6(req, res) {
           _context6.t0 = _context6["catch"](1);
           res.send({
             result: "Error",
-            message: "Ha ocurrido un error al eliminar los productos del carrito."
+            message: "Error al eliminar los productos del carrito."
           });
 
         case 16:

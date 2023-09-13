@@ -28,7 +28,7 @@ router.get("/", async (req, res) => {
     });
   }
 });
-
+//Crear carrito en la base de datos
 router.post("/", async (req, res) => {
   const { products } = req.body;
   try {
@@ -42,6 +42,8 @@ router.post("/", async (req, res) => {
     });
   }
 });
+
+//modificar los datos de productos del carrito
 
 router.put("/:cid", async (req, res) => {
   let { cid } = req.params;
@@ -123,8 +125,7 @@ router.put("/:cartId/products/:pId", async (req, res) => {
   } catch (error) {
     res.send({
       result: "Error",
-      message:
-        "Ha ocurrido un error al actualizar la cantidad del producto en el carrito.",
+      message: "Error al actualizar la cantidad del producto en el carrito.",
     });
   }
 });
@@ -150,7 +151,7 @@ router.delete("/:cartId", async (req, res) => {
   } catch (error) {
     res.send({
       result: "Error",
-      message: "Ha ocurrido un error al eliminar los productos del carrito.",
+      message: "Error al eliminar los productos del carrito.",
     });
   }
 });
