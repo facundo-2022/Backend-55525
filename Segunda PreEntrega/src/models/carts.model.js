@@ -3,32 +3,16 @@ const mongoosePaginate = require("mongoose-paginate-v2");
 
 const cartCollection = "carts";
 
-const productSchema = mongoose.Schema({
+const cartSchema = mongoose.Schema({
   products: {
     type: [
       {
         product: {
           type: mongoose.Schema.Types.ObjectId,
-          ref: "products",
+          ref: "product",
         },
-      },
-    ],
-  },
-  quantity: { type: Number, default: 0 },
-});
-
-const cartSchema = mongoose.Schema({
-  /* productId: Number,
-  name: String,*/
-
-  users: {
-    type: [
-      {
-        user: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "users",
-          required: true,
-        },
+        id: { type: String, required: true },
+        quantity: { type: Number, default: 1 },
       },
     ],
     default: [],
