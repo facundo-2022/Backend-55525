@@ -10,12 +10,15 @@ const port = 8080;
 const fileStorage = fileStore(session);
 app.use(cookieParser());
 app.use(
-  session()({
-    sotre: new FileStore({
+  session({
+    store: new fileStorage({
       path: "./session",
       ttl: 100,
       retries: 0,
     }),
+    secret: "coderHouse",
+    resave: false,
+    saveUninitialized: false,
   })
 ); // aca dentro definimos el tiempo de vide, es decir el tiempo que el servidor va a tratar de leer el archivo con la informacion de la session y por otro lado va a tener la ruta donde va ir almacenado la info en la carpeta.
 
