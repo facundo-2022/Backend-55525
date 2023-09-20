@@ -1,16 +1,29 @@
 const express = require("express");
-/* const cookieParser = require("cookie-parser");
-const { request } = require("express"); */
+const cookieParser = require("cookie-parser");
+//const { request } = require("express");
+//const session = require("express-session");
+const fileStore = require("session-file-store"); // clase 19
 const session = require("express-session");
-
 const app = express();
 const port = 8080;
 
-//implementacion del milware
-/* app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser("coderSecret")); */ //al momento de inicializar va a leer que esa cookie esta firmada y no la podemos alterar y debemos agregar en app.get("/setCookie") el signed: true
+const fileStorage = fileStore(session);
+app.use(cookieParser());
+app.use(
+  session()({
+    sotre: new FileStore({
+      path: "./session",
+      ttl: 100,
+      retries: 0,
+    }),
+  })
+); // aca dentro definimos el tiempo de vide, es decir el tiempo que el servidor va a tratar de leer el archivo con la informacion de la session y por otro lado va a tener la ruta donde va ir almacenado la info en la carpeta.
 
-/* app.get("/setCookie", (req, res) => {
+/* //implementacion del middleware
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser("coderSecret"));  //al momento de inicializar va a leer que esa cookie esta firmada y no la podemos alterar y debemos agregar en app.get("/setCookie") el signed: true
+
+app.get("/setCookie", (req, res) => {
   res
     .cookie("coderCokie", "Cookie en mi navegador", {
       maxAge: 10000,
@@ -25,9 +38,9 @@ app.get("/getCookie", (req, res) => {
 
 app.get("/deleteCookie", (req, res) => {
   res.clearCookie("coderCokie").send("Cookie eliminada");
-}); */
+});
 
-/* app.get("/", (req, res) => {
+app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
 });
 
@@ -42,7 +55,7 @@ app.get("/getCookie", (req, res) => {
 
   res.send("Cookie Mostrar en consola");
 });
- */
+
 
 // parte de session
 
@@ -91,5 +104,6 @@ function auth(req, res, next) {
 
 app.get("/private", auth, (req, res) => {
   res.send("Eres el admin");
-});
+}); */
+
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
