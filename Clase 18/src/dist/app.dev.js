@@ -1,26 +1,34 @@
-const express = require("express");
-const cookieParser = require("cookie-parser");
-//const { request } = require("express");
-//const session = require("express-session");
-const fileStore = require("session-file-store"); // clase 19
-const session = require("express-session");
-const app = express();
-const port = 8080;
+"use strict";
 
-const fileStorage = fileStore(session);
-app.use(cookieParser());
-app.use(
-  session({
-    store: new fileStorage({
-      path: "./session",
-      ttl: 100,
-      retries: 0,
-    }),
-    secret: "coderHouse",
-    resave: false,
-    saveUninitialized: false,
-  })
-); // aca dentro definimos el tiempo de vide, es decir el tiempo que el servidor va a tratar de leer el archivo con la informacion de la session y por otro lado va a tener la ruta donde va ir almacenado la info en la carpeta.
+var express = require("express");
+
+var cookieParser = require("cookie-parser"); //const { request } = require("express");
+//const session = require("express-session");
+//const fileStore = require("session-file-store"); // clase 19
+
+
+var session = require("express-session");
+
+var MongoStore = require("connect-mongo");
+
+var app = express();
+var port = 8080; //const fileStorage = fileStore(session);
+//app.use(cookieParser());
+
+app.use(session({
+  store: MongoStore.create({
+    mongoUrl: "mongodb+srv://facundom:Amparo.23@cluster0.ko8l77a.mongodb.net/?retryWrites=true&w=majority",
+    mongoOptions: {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    },
+    //mongoOptions es la espesificaion en que forma  a almacenar esta info en mi coleccion.
+    ttl: 1000
+  }),
+  secret: "coderHouse",
+  resave: false,
+  saveUninitialized: true
+})); // aca dentro definimos el tiempo de vide, es decir el tiempo que el servidor va a tratar de leer el archivo con la informacion de la session y por otro lado va a tener la ruta donde va ir almacenado la info en la carpeta.
 
 /* //implementacion del middleware
 app.use(express.urlencoded({ extended: true }));
@@ -109,4 +117,6 @@ app.get("/private", auth, (req, res) => {
   res.send("Eres el admin");
 }); */
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+app.listen(port, function () {
+  return console.log("Example app listening on port ".concat(port, "!"));
+});
