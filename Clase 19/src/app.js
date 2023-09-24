@@ -8,6 +8,7 @@ const viewsRouter = require("../src/routes/views");
 const app = express();
 const port = 8080;
 
+app.use(express.urlencoded({ extended: true }));
 app.use(
   session({
     store: MongoStore.create({

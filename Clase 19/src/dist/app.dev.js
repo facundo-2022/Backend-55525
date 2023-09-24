@@ -16,6 +16,9 @@ var viewsRouter = require("../src/routes/views");
 
 var app = express();
 var port = 8080;
+app.use(express.urlencoded({
+  extended: true
+}));
 app.use(session({
   store: MongoStore.create({
     mongoUrl: "mongodb+srv://facundom:Amparo.23@cluster0.ko8l77a.mongodb.net/?retryWrites=true&w=majority",

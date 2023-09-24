@@ -2,6 +2,7 @@
 
 var mongoose = require("mongoose");
 
+var UserCollection = "User";
 var userSchema = new mongoose.Schema({
   first_name: String,
   last_name: String,
