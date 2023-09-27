@@ -36,15 +36,14 @@ app.use(
     saveUninitialized: true,
   })
 );
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.engine("handlebars", handlebars.engine());
-app.set("views", __dirname + "/views");
+app.set("views", __dirname + "src/views");
 app.set("view engine", "handlebars");
 
 app.use("/api/usuarios", usuarioRouter);
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
 /* app.post("/register", async (req, res) => {
   let { first_name, last_name, email, age, password } = req.body;

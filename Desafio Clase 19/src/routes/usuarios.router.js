@@ -21,7 +21,7 @@ router.post("/register", async (req, res) => {
   });
   res.send({ status: "success", payload: user });
   console.log("User created" + user);
-  res.redirect("/login");
+  //res.redirect("/login");
 });
 
 router.get("/profile", (req, res) => {
@@ -34,7 +34,7 @@ router.get("/profile", (req, res) => {
   console.log("Usuario inicio session");
 });
 
-router.get("/login", (res, req) => {
+/* router.get("/login", (res, req) => {
   const { email, password } = req.body;
   if (!req.session.user) {
     res.render("login");
@@ -42,8 +42,8 @@ router.get("/login", (res, req) => {
     res.render("/views/profile");
   }
 });
-
-/* //En el login si los datos el email y password no son correctos tirar un erro de datos.
+ */
+//En el login si los datos el email y password no son correctos tirar un erro de datos.
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
@@ -61,6 +61,20 @@ router.post("/login", async (req, res) => {
   if (!user) {
     return res.status(400).render("login", { error: "Usuario invalido" });
   }
-}); */
+});
 
+router.get("/logout", async (req, res) => {
+  delete req.session.user;
+  res.redirect("login");
+});
+
+app.get("/login", (req, res) => {
+  const { username, password } = req.query;
+  if (email !== "adminCoder@coder.com" || password !== "adminCod3r123") {
+    return res.send("email o contraseña invalida");
+  }
+  req.session.user = email;
+  (req.session.admin = true), //si vemos admin en true le damos todo los privilegio a este usuario.
+    res.send("Acceso Satisfactorio, permiso de admin ");
+});
 module.exports = router;
