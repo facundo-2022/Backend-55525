@@ -13,7 +13,7 @@ const initializePassport = () => {
       {
         clientID: "Iv1.f26e4f1f954a0d52",
         clientSecret: "481456f66b327ccccb6c701d5717c5b97784e6db",
-        callbackURL: "http://localhost:8080/api/sessions/githubcallback",
+        callbackURL: "http://localhost:8080/api/usuarios/githubcallback",
       }, // para usarlo necesitamos declarar unas parametros que son los tres que estan ahi, y desde la pagina de github copiamos el clientId cuando creamos la app. client Secret lo creamos cuando generamos el new el clientSecret desde github
       async (accessToken, refreshToken, profile, done) => {
         try {

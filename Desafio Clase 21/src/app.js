@@ -43,7 +43,7 @@ app.engine("handlebars", handlebars.engine());
 app.set("views", __dirname + "/views");
 app.set("view engine", "handlebars");
 
-app.use("/api/sessions", usuarioRouter);
+app.use("/api/usuarios", usuarioRouter);
 
 app.get("/", (req, res) => {
   res.send("Express Sessions!");

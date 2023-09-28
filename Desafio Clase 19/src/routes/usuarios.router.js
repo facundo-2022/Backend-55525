@@ -24,9 +24,9 @@ router.post("/register", async (req, res) => {
   //res.redirect("/login");
 });
 
-router.get("/profile", (req, res) => {
+router.get("/profile", async (req, res) => {
   if (!req.session.user) {
-    return res.redirect("/login");
+    return res.redirect("login");
   }
   const { first_name, last_name, email, age } = req.session.user;
   console.log(first_name, last_name, email, age);
@@ -68,7 +68,7 @@ router.get("/logout", async (req, res) => {
   res.redirect("login");
 });
 
-app.get("/login", (req, res) => {
+router.get("/login", (req, res) => {
   const { username, password } = req.query;
   if (email !== "adminCoder@coder.com" || password !== "adminCod3r123") {
     return res.send("email o contraseña invalida");

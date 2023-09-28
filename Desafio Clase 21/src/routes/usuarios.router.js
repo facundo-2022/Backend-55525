@@ -49,7 +49,7 @@ router.post("/login", async (req, res) => {
   };
  */
 
-  res.redirect("/api/sessions/profile");
+  res.redirect("/api/usuarios/profile");
 });
 
 router.get("/logout", async (req, res) => {
@@ -74,7 +74,7 @@ router.get(
   passport.authenticate("github", { failureRedirect: "/login" }),
   async (req, res) => {
     req.session.user = req.user;
-    res.redirect("/profile");
+    res.redirect("/api/usuarios/profile");
   }
 );
 
